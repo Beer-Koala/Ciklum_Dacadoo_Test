@@ -1,0 +1,6 @@
+framework module Pods_Ciklum_Dacadoo_Test {
+  umbrella header "Pods-Ciklum_Dacadoo_Test-umbrella.h"
+
+  export *
+  module * { export * }
+}
