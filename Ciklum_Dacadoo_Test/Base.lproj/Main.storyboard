@@ -38,7 +38,7 @@
                                     <inset key="sectionInset" minX="2" minY="5" maxX="2" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="i1K-iN-NeQ">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="i1K-iN-NeQ" customClass="ImageViewCell" customModule="Ciklum_Dacadoo_Test" customModuleProvider="target">
                                         <rect key="frame" x="2" y="5" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -57,10 +57,15 @@
                                             <constraint firstAttribute="bottom" secondItem="Bz8-RP-idC" secondAttribute="bottom" id="pmk-7M-Po7"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="456-qy-rDN" kind="show" id="fcf-O7-8oN"/>
+                                            <outlet property="imageView" destination="Bz8-RP-idC" id="5lX-W7-LlM"/>
+                                            <segue destination="456-qy-rDN" kind="show" identifier="openImage" id="fcf-O7-8oN"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Qeh-JX-LXx"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dWC-ZD-dwv"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,15 +81,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="pgK-jf-y53"/>
+                    <connections>
+                        <outlet property="collectionView" destination="GkH-zh-byF" id="ZuR-Vz-BwX"/>
+                        <outlet property="searchBar" destination="W52-wF-YEs" id="Lhg-8I-FXn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1576.8115942028987" y="137.94642857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Image View Controller-->
         <scene sceneID="SKu-2Q-G2j">
             <objects>
-                <viewController id="456-qy-rDN" sceneMemberID="viewController">
+                <viewController id="456-qy-rDN" customClass="ImageViewController" customModule="Ciklum_Dacadoo_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="imh-g1-Ixb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,10 +111,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DQo-xw-OAu"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="Ki0-ET-BvA" id="sIv-4I-JyS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EA8-5K-3X8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2379.7101449275365" y="143.97321428571428"/>
+            <point key="canvasLocation" x="2474" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="L5K-bc-YlM">
