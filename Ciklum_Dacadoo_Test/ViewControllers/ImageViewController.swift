@@ -11,11 +11,14 @@ import UIKit
 class ImageViewController: UIViewController {
 
     var url: URL?
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: ImageLoader!
 
     override func viewDidLoad() {
-        imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: url)
+        if let url = url {
+            imageView.setImage(with: url)
+        }
+//        imageView.kf.indicatorType = .activity
+//        imageView.kf.setImage(with: url)
     }
 
 }

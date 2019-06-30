@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class Network {
 
@@ -32,11 +31,16 @@ class Network {
 
         guard let url = urlComps.url else { return } //??? error?!
 
-        let data = try? Data(contentsOf: url)
-        let response = try? JSONDecoder().decode(ServerResponse.self, from: data!)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let data = try? Data(contentsOf: url)
+            let response = try? JSONDecoder().decode(ServerResponse.self, from: data!)
 
-        if let response = response { //???
-            completion(response.photos)
+            if let response = response { //???
+                DispatchQueue.main.async {
+                    completion(response.photos)
+                }
+            }
         }
+
     }
 }

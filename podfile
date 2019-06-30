@@ -5,6 +5,5 @@ use_frameworks!
 target 'Ciklum_Dacadoo_Test' do
 
 pod 'SwiftLint'
-pod 'Kingfisher'
 
 end

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "132209D53B5FF14F5CEFDD77F257538B"
+               BlueprintIdentifier = "3A8E76A9B3C4CB2ACEB1FB16102E5DD6"
                BuildableName = "Pods_Ciklum_Dacadoo_Test.framework"
                BlueprintName = "Pods-Ciklum_Dacadoo_Test"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "132209D53B5FF14F5CEFDD77F257538B"
+            BlueprintIdentifier = "3A8E76A9B3C4CB2ACEB1FB16102E5DD6"
             BuildableName = "Pods_Ciklum_Dacadoo_Test.framework"
             BlueprintName = "Pods-Ciklum_Dacadoo_Test"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class ViewController: UIViewController {
 
@@ -46,6 +45,14 @@ extension ViewController: UISearchBarDelegate {
             self?.updateData()
         }
     }
+
+    // clear searchBar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            photos = []
+            updateData()
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -57,15 +64,17 @@ extension ViewController: UICollectionViewDataSource {
         //??? identifier in conctant
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ImageViewCell ?? ImageViewCell()
 
-        cell.imageView.kf.indicatorType = .activity
-        cell.imageView.kf.setImage(
-            with: photos[indexPath.row].url,
-            placeholder: nil,
-            options: [
-                .processor(DownsamplingImageProcessor(size: CGSize(width: 300, height: 300))), //??? 300 points? or px?!
-                .scaleFactor(UIScreen.main.scale),
-                .cacheOriginalImage
-            ])
+        cell.imageView.setImage(with: photos[indexPath.row].url, andSet: 300)
+
+//        cell.imageView.kf.indicatorType = .activity
+//        cell.imageView.kf.setImage(
+//            with: photos[indexPath.row].url,
+//            placeholder: nil,
+//            options: [
+//                .processor(DownsamplingImageProcessor(size: CGSize(width: 300, height: 300))), //??? 300 points? or px?!
+//                .scaleFactor(UIScreen.main.scale),
+//                .cacheOriginalImage
+//            ])
 
         return cell
     }

@@ -12,6 +12,8 @@
 		FD23185722C8969D000CA2BC /* PhotoTumblr.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD23185622C8969D000CA2BC /* PhotoTumblr.swift */; };
 		FD23185922C96110000CA2BC /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD23185822C96110000CA2BC /* ImageViewCell.swift */; };
 		FD23185B22C96578000CA2BC /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD23185A22C96578000CA2BC /* ImageViewController.swift */; };
+		FD23185F22C96D32000CA2BC /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD23185E22C96D32000CA2BC /* ImageLoader.swift */; };
+		FD23186122C979E6000CA2BC /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD23186022C979E6000CA2BC /* UIImage+extension.swift */; };
 		FD4FC35822C40C3700328908 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FC35722C40C3700328908 /* AppDelegate.swift */; };
 		FD4FC35A22C40C3700328908 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4FC35922C40C3700328908 /* ViewController.swift */; };
 		FD4FC35D22C40C3700328908 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD4FC35B22C40C3700328908 /* Main.storyboard */; };
@@ -27,6 +29,8 @@
 		FD23185622C8969D000CA2BC /* PhotoTumblr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTumblr.swift; sourceTree = "<group>"; };
 		FD23185822C96110000CA2BC /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		FD23185A22C96578000CA2BC /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		FD23185E22C96D32000CA2BC /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		FD23186022C979E6000CA2BC /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		FD4FC35422C40C3700328908 /* Ciklum_Dacadoo_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ciklum_Dacadoo_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4FC35722C40C3700328908 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD4FC35922C40C3700328908 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,12 +109,14 @@
 		FD4FC35622C40C3700328908 /* Ciklum_Dacadoo_Test */ = {
 			isa = PBXGroup;
 			children = (
+				FD4FC36022C40C3A00328908 /* LaunchScreen.storyboard */,
 				FD4FC35722C40C3700328908 /* AppDelegate.swift */,
+				FD23186022C979E6000CA2BC /* UIImage+extension.swift */,
+				FD23185E22C96D32000CA2BC /* ImageLoader.swift */,
+				FD4FC35B22C40C3700328908 /* Main.storyboard */,
 				FD23185C22C967D5000CA2BC /* Model */,
 				FD23185D22C967E6000CA2BC /* ViewControllers */,
-				FD4FC35B22C40C3700328908 /* Main.storyboard */,
 				FD4FC35E22C40C3A00328908 /* Assets.xcassets */,
-				FD4FC36022C40C3A00328908 /* LaunchScreen.storyboard */,
 				FD4FC36322C40C3A00328908 /* Info.plist */,
 			);
 			path = Ciklum_Dacadoo_Test;
@@ -127,7 +133,6 @@
 				FD4FC35022C40C3700328908 /* Sources */,
 				FD4FC35122C40C3700328908 /* Frameworks */,
 				FD4FC35222C40C3700328908 /* Resources */,
-				E4CDA37BC6074FE7AFEB3EF6 /* [CP] Embed Pods Frameworks */,
 				FD23185122C6AAB3000CA2BC /* ShellScript */,
 			);
 			buildRules = (
@@ -208,28 +213,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E4CDA37BC6074FE7AFEB3EF6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Ciklum_Dacadoo_Test/Pods-Ciklum_Dacadoo_Test-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ciklum_Dacadoo_Test/Pods-Ciklum_Dacadoo_Test-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FD23185122C6AAB3000CA2BC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,6 +240,8 @@
 				FD23185722C8969D000CA2BC /* PhotoTumblr.swift in Sources */,
 				FD4FC35A22C40C3700328908 /* ViewController.swift in Sources */,
 				FD4FC35822C40C3700328908 /* AppDelegate.swift in Sources */,
+				FD23186122C979E6000CA2BC /* UIImage+extension.swift in Sources */,
+				FD23185F22C96D32000CA2BC /* ImageLoader.swift in Sources */,
 				FD23185922C96110000CA2BC /* ImageViewCell.swift in Sources */,
 				FD23185B22C96578000CA2BC /* ImageViewController.swift in Sources */,
 				FD23185322C7EC73000CA2BC /* Network.swift in Sources */,
