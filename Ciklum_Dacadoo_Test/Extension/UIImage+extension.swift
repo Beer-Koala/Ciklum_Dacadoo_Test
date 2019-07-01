@@ -22,7 +22,7 @@ extension UIImage {
         let hasAlpha = false
 
         //UIScreen.main.scale
-        let scale: CGFloat = 1 // for pixels, not points!
+        let scale: CGFloat = 1 // for pixels, not points
         //0.0 is Automatically use scale factor of main screen
 
         UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)

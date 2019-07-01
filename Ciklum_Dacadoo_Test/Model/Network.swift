@@ -8,12 +8,12 @@
 
 import Foundation
 
-class Network {
+class Network { // singletone for example
 
     let requestURL = "http://api.tumblr.com/v2/tagged"
     let tagName = "tag"
     let apiKeyName = "api_key"
-    let apiKeyValue = "CcEqqSrYdQ5qTHFWssSMof4tPZ89sfx6AXYNQ4eoXHMgPJE03U"
+    let apiKeyValue = "CcEqqSrYdQ5qTHFWssSMof4tPZ89sfx6AXYNQ4eoXHMgPJE03U" // better save to keychain
 
     // MARK: initialization of Singletone
     private init() {

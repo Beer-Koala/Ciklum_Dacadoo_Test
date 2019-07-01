@@ -1,5 +1,5 @@
 //
-//  ImageLoader.swift
+//  ImageViewWithLoader.swift
 //  Ciklum_Dacadoo_Test
 //
 //  Created by BeerKoala on 7/1/19.
@@ -10,7 +10,7 @@ import UIKit
 
 let imageCache = NSCache<AnyObject, UIImage>()
 
-class ImageLoader: UIImageView {
+class ImageViewWithLoader: UIImageView {
 
     var imageUrl: URL?
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()

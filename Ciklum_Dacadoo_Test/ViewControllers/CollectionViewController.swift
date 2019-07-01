@@ -10,8 +10,6 @@ import UIKit
 
 class CollectionViewController: UIViewController {
 
-    let cellIdentifier = "Cell"
-
     var photos: [PhotoTumblr] = []
 
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -36,7 +34,7 @@ class CollectionViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "openImage" {
+        if segue.identifier == Constants.segueIdentifier.rawValue {
             guard let destination = segue.destination as? ImageViewController,
                 let cell = sender as? ImageViewCell,
                 let selectedIndex = collectionView.indexPath(for: cell) else {
@@ -70,8 +68,8 @@ extension CollectionViewController: UISearchBarDelegate {
             if let error = error {
                 print(error as Any)
 
-                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                let alert = UIAlertController(title: Constants.errorText.rawValue, message: error.localizedDescription, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: Constants.okText.rawValue, style: .default, handler: nil)
                 alert.addAction(okButton)
                 self?.present(alert, animated: true, completion: nil)
                 return
@@ -98,11 +96,12 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? ImageViewCell ?? ImageViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier.rawValue, for: indexPath) as? ImageViewCell
+            ?? ImageViewCell()
 
         cell.imageView.setImage(with: photos[indexPath.row].url, andSet: ImageViewCell.imageWidth)
 
-        // with KIngwisher it can be easier
+        // with Kingfisher it can be easier
         //        cell.imageView.kf.indicatorType = .activity
         //        cell.imageView.kf.setImage(
         //            with: photos[indexPath.row].url,

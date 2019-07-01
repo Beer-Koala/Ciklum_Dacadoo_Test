@@ -11,7 +11,7 @@ import UIKit
 class ImageViewController: UIViewController {
 
     var url: URL?
-    @IBOutlet weak var imageView: ImageLoader!
+    @IBOutlet weak var imageView: ImageViewWithLoader!
 
     override func viewDidLoad() {
         if let url = url {
