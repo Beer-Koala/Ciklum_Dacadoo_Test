@@ -17,6 +17,8 @@ class ImageViewController: UIViewController {
         if let url = url {
             imageView.setImage(with: url)
         }
+
+        // kingfisher try code
 //        imageView.kf.indicatorType = .activity
 //        imageView.kf.setImage(with: url)
     }

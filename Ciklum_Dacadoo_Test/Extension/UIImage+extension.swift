@@ -10,9 +10,7 @@ import UIKit
 
 extension UIImage {
 
-    func scale(to newWidth: CGFloat?) -> UIImage {
-
-        guard let newWidth = newWidth else { return self }
+    func scale(to newWidth: CGFloat) -> UIImage {
 
         let aspectRatio = newWidth / self.size.width
         let newHeight = self.size.height * aspectRatio

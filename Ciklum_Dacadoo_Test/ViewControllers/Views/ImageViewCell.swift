@@ -9,5 +9,7 @@
 import UIKit
 
 class ImageViewCell: UICollectionViewCell {
+    static let imageWidth: CGFloat = 300
+
     @IBOutlet weak var imageView: ImageLoader!
 }

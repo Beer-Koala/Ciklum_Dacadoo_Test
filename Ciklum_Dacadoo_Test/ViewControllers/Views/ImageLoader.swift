@@ -19,7 +19,6 @@ class ImageLoader: UIImageView {
         super.init(coder: aDecoder)
 
         self.addSubview(activityIndicator)
-
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -31,7 +30,6 @@ class ImageLoader: UIImageView {
     func setImage(with url: URL, andSet width: CGFloat? = nil) {
 
         self.image = nil
-
         self.imageUrl = url
 
         activityIndicator.isHidden = false
@@ -39,38 +37,50 @@ class ImageLoader: UIImageView {
 
         // retrieves image if already available in cache
         if let imageFromCache = imageCache.object(forKey: url as AnyObject) {
-            self.image = imageFromCache.scale(to: width)
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
+            set(image: imageFromCache, with: width)
             return
         }
 
-        // image does not available in cache.. so retrieving it from url...
+        // retrieves image from url
         URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
 
             if error != nil {
                 print(error as Any)
                 DispatchQueue.main.async(execute: {
-                    //self.activityIndicator.stopAnimating() //???
+                    self.activityIndicator.stopAnimating()
                 })
                 return
             }
 
             DispatchQueue.global(qos: .userInitiated).async {
-                if let data = try? Data(contentsOf: url) {//???
+                do {
+                    let data = try Data(contentsOf: url)
                     DispatchQueue.main.async {
                         if self.imageUrl == url,
                             let image = UIImage(data: data) {
                             imageCache.setObject(image, forKey: url as AnyObject)
 
-                            //??? change width to 300px
-                            self.image = image.scale(to: width)
-                            self.activityIndicator.stopAnimating()
-                            self.activityIndicator.isHidden = true
+                            self.set(image: image, with: width)
                         }
                     }
+                } catch {
+                    print(error as Any)
+                    DispatchQueue.main.async(execute: {
+                        self.activityIndicator.stopAnimating()
+                    })
+                    return
                 }
             }
         }).resume()
+    }
+
+    private func set(image: UIImage, with width: CGFloat?) {
+        if let width = width {
+            self.image = image.scale(to: width)
+        } else {
+            self.image = image
+        }
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
     }
 }

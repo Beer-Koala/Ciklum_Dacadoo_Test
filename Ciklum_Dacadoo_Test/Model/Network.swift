@@ -22,25 +22,51 @@ class Network {
     static let shared = Network()
 
     // MARK: class functions
-    func getData(for text: String, completion: @escaping ([PhotoTumblr]) -> Void) {
+    func getData(for text: String, completion: @escaping ([PhotoTumblr], Error?) -> Void) {
 
-        guard var urlComps = URLComponents(string: requestURL) else { return } //??? error?!
+        guard var urlComps = URLComponents(string: requestURL) else {
+            completion([], NetworkError.urlError)
+            return
+        }
 
         let queryItems = [URLQueryItem(name: tagName, value: text), URLQueryItem(name: apiKeyName, value: apiKeyValue)]
         urlComps.queryItems = queryItems
 
-        guard let url = urlComps.url else { return } //??? error?!
+        guard let url = urlComps.url else {
+            completion([], NetworkError.urlParamsError)
+            return
+        }
 
         DispatchQueue.global(qos: .userInitiated).async {
-            let data = try? Data(contentsOf: url)
-            let response = try? JSONDecoder().decode(ServerResponse.self, from: data!)
-
-            if let response = response { //???
+            do {
+                let data = try Data(contentsOf: url)
+                let response = try JSONDecoder().decode(ServerResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completion(response.photos)
+                        completion(response.photos, nil)
+                }
+            } catch {
+                 DispatchQueue.main.async {
+                    completion([], error)
                 }
             }
         }
+    }
 
+    // MARK: errors
+    enum NetworkError: Error {
+        case urlError
+        case urlParamsError
+    }
+
+}
+
+extension Network.NetworkError: LocalizedError {
+    public var errorDescription: String? {
+                    switch self {
+                    case .urlError:
+                        return NSLocalizedString("Wrong url", comment: "")
+                    case .urlParamsError:
+                        return NSLocalizedString("Wrong url parameters", comment: "")
+                    }
     }
 }

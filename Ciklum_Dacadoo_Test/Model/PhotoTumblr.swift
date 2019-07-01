@@ -10,7 +10,7 @@ import Foundation
 
 struct PhotoTumblr: Decodable {
     var url: URL
-    // title, summary etc
+    // in future: title, summary etc
 
     enum CodingKeys: String, CodingKey {
         case originalSize = "original_size"
@@ -35,7 +35,7 @@ private struct RawServerResponse: Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         photos = []
-        if values.contains(.photos) { // for some types of posrs may not be photos
+        if values.contains(.photos) { // for some types of posts may not be photos
             photos = try values.decode([PhotoTumblr].self, forKey: .photos)
         }
     }
@@ -51,9 +51,8 @@ struct ServerResponse: Decodable {
         case status
         case message = "msg"
         case response
-        //case photos
     }
-//
+
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -65,7 +64,6 @@ struct ServerResponse: Decodable {
         // response
         if self.status == 200 {
             let response = try values.decode([RawServerResponse].self, forKey: CodingKeys.response)
-
             self.photos = response.flatMap {$0.photos}
         } else {
             self.photos = []
