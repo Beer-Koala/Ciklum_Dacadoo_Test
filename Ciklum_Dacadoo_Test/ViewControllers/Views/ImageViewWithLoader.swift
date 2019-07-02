@@ -42,36 +42,25 @@ class ImageViewWithLoader: UIImageView {
         }
 
         // retrieves image from url
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    if self.imageUrl == url,
+                        let image = UIImage(data: data) {
+                        imageCache.setObject(image, forKey: url as AnyObject)
 
-            if error != nil {
+                        self.set(image: image, with: width)
+                    }
+                }
+            } catch {
                 print(error as Any)
                 DispatchQueue.main.async(execute: {
                     self.activityIndicator.stopAnimating()
                 })
                 return
             }
-
-            DispatchQueue.global(qos: .userInitiated).async {
-                do {
-                    let data = try Data(contentsOf: url)
-                    DispatchQueue.main.async {
-                        if self.imageUrl == url,
-                            let image = UIImage(data: data) {
-                            imageCache.setObject(image, forKey: url as AnyObject)
-
-                            self.set(image: image, with: width)
-                        }
-                    }
-                } catch {
-                    print(error as Any)
-                    DispatchQueue.main.async(execute: {
-                        self.activityIndicator.stopAnimating()
-                    })
-                    return
-                }
-            }
-        }).resume()
+        }
     }
 
     private func set(image: UIImage, with width: CGFloat?) {
